@@ -22,6 +22,7 @@ export * from "./IconAngleLeft";
 export * from "./IconAngleRight";
 export * from "./IconArrowRight";
 export * from "./IconBookcase";
+export * from './IconBookEye'
 export * from "./IconCheck";
 export * from "./IconClear";
 export * from "./IconDiscord";
