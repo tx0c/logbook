@@ -8,8 +8,6 @@ import { useResponsive } from "~/hooks";
 import styles from "./styles.module.css";
 
 export const RecentlyWritten = () => {
-  // TODO: fetch data
-
   const isSmallUP = useResponsive("sm-up");
 
   let buttonProps: ButtonProps = {
