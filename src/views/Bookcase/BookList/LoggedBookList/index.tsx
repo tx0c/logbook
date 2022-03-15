@@ -61,9 +61,9 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
       ownID: address.toLowerCase(),
     },
   });
-  const [logbookList, updateLogbookList] = useState([]);
+  const [logbookList, updateLogbookList] = useState<Array<any>>([]);
   useEffect(() => {
-    updateLogbookList(data?.account?.logbooks);
+    updateLogbookList(data?.account?.logbooks || []);
   }, [data]);
 
   if (error) return <></>;
@@ -76,19 +76,20 @@ export const LoggedBookList: React.FC<LoggedBookListProps> = ({ address }) => {
   }
 
   const loadMore = async () => {
-    const [lastLogbook] = logbookList.slice(-1);
-    const { loggedAt } = lastLogbook;
-    const { data } = await fetchMore({
-      variables: {
-        first,
-        lastLoggedAt: loggedAt,
-        ownID: address.toLowerCase(),
-      },
-    });
+    // const [lastLogbook] = ;
+    // const loggedAt = logbookList?.[logbookList.length-1]?.loggedAt;
+    const variables: Record<string, any> = {
+      first,
+      // lastLoggedAt: loggedAt,
+      ownID: address.toLowerCase(),
+    };
+    if (logbookList?.length >= 1)
+      variables.loggedAt = logbookList[logbookList.length - 1]?.loggedAt;
+    const { data } = await fetchMore({ variables });
     console.log({ data });
     const {
       account: { logbooks },
-    } = data;
+    } = data as any;
     updateLogbookList(logbookList.concat(logbooks));
     console.log({ logbookList });
     updateHasNextPage(logbooks.length >= first);
