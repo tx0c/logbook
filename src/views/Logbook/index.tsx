@@ -30,16 +30,16 @@ const Logbook: React.FC = () => {
     },
   });
 
-  useEffect(() => {
+  /* useEffect(() => {
     console.log("logbookDetail:", { logbookDetail, accountData });
-  }, [logbookDetail, accountData]);
+  }, [logbookDetail, accountData]); */
 
-  const [initialContent, setContent] = useState<string>("");
+  // const [initialContent, setContent] = useState<string>("");
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (!logbookDetail?.logbook) return;
     setContent(logbookDetail.logbook.publications?.[0]?.log?.content);
-  }, [logbookDetail]);
+  }, [logbookDetail]); */
 
   const owner = logbookDetail?.logbook?.owner;
 
@@ -65,8 +65,8 @@ const Logbook: React.FC = () => {
             isEditing ? (
               <Editing
                 id={id}
-                content={initialContent}
-                setContent={setContent}
+                // content={initialContent}
+                // setContent={setContent}
                 onLeave={() => enableEditing(false)}
               />
             ) : (

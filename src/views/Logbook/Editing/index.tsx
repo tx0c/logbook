@@ -32,15 +32,15 @@ import styles from "./styles.module.css";
 
 interface Props {
   id: string;
-  content: string;
-  setContent: (arg0: string) => void;
+  content?: string;
+  // setContent: (arg0: string) => void;
   onLeave: () => any;
 }
 
 export const Editing: React.FC<Props> = ({
   id,
   content,
-  setContent,
+  // setContent,
   onLeave,
 }) => {
   const [{ data: dataPublishing, loading: publishWaiting }, publish] =
@@ -79,7 +79,7 @@ export const Editing: React.FC<Props> = ({
 
   const editorUpdate = _debounce(async ({ content }: { content: string }) => {
     console.log("got update:", { content, errorFeeData });
-    setContent(content);
+    // setContent(content);
 
     // estimate
     if (errorFeeData || loadingFeeData) {
@@ -125,7 +125,7 @@ export const Editing: React.FC<Props> = ({
 
   const onPublish = async () => {
     const content = editorRef.current?.getMarkdown();
-    setContent(content);
+    // setContent(content);
     console.log("to publish:", { content });
 
     const { data, error } = await publish({
@@ -156,7 +156,7 @@ export const Editing: React.FC<Props> = ({
               // onLeave();
               openDialog();
 
-              setContent(editorRef.current?.getMarkdown());
+              // setContent(editorRef.current?.getMarkdown());
             }}
           >
             <TextIcon>Leave</TextIcon>
