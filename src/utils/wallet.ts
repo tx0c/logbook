@@ -41,11 +41,7 @@ export const toPolygonHashUrl = (txHash: string) => {
   const domain = isProd ? "polygonscan.com" : "mumbai.polygonscan.com";
   const maskedHash = maskAddress(txHash);
 
-  return {
-    url: `https://${domain}/tx/${txHash}`,
-    txHash,
-    maskedHash,
-  };
+  return `https://${domain}/tx/${txHash}`;
 };
 
 export const toOpenseaUrl = (id: string) => {
